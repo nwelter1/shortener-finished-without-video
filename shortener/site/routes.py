@@ -11,7 +11,7 @@ def home():
         link = form.link.data
         print(link)
         check = Link.query.filter_by(link=link)
-        if check.first():
+        if check.first() is not None:
             return render_template('home.html', form = form, created_link = f'{request.base_url}'+ check.first().id, already = True)
         new_link = Link(link)
         db.session.add(new_link)
